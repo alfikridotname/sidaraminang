@@ -1,15 +1,15 @@
 <div class="register-box">
-    <div class="register-logo">
-        <a href="javascript:;"><b>SIDARA </b>Minang</a>
-    </div>
+
 
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg">Register perantau baru</p>
+            <div class="register-logo">
+                <a href="javascript:;"><b>SIDARA </b>Minang</a>
+            </div>
             <div id="notif"></div>
             <form id="form-register" method="post">
                 <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK">
+                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK" autocomplete="off" required="true">
                 </div>
                 <div id="detail">
                     <div class="form-group mb-3">

@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#nik').focus();
@@ -15,16 +16,15 @@
             dataType: 'JSON',
             data: $('#' + form).serialize(),
             success: function(x) {
-                if (x.status == true) {
+                if (x.success == true) {
                     $('#detail').show();
-                    $('#nama').val(x.data.nama_lengkap);
-                    $('#tgl_lahir').val(x.data.tgl_lahir);
+                    $('#nama').val(x.nama);
+                    $('#tgl_lahir').val(x.tgl_lahir);
                     $('#btn-cari').hide();
                     $('#btn-register').show();
                 } else {
                     $('#notif').html(`<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
                         ${x.message}
                     </div>`);
                     $('#' + form)[0].reset();
@@ -44,12 +44,14 @@
             dataType: 'JSON',
             data: $('#' + form).serialize(),
             success: function(x) {
-                if (x.status == true) {
-
+                if (x.success == true) {
+                    swal("Selamat !", "Registrasi telah berhasil", "success");
+                    setTimeout(function() {
+                        window.location.href = "<?php base_url('/'); ?>";
+                    }, 2000);
                 } else {
                     $('#notif').html(`<div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
                         ${x.message}
                     </div>`);
                     $('#' + form)[0].reset();

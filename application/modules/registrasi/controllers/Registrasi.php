@@ -11,6 +11,9 @@ class Registrasi extends My_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model([
+            'registrasi/registrasi_model' => 'registrasi_model'
+        ]);
         $this->load->library('curl');
         $this->load->helper('function');
     }
@@ -29,14 +32,26 @@ class Registrasi extends My_Controller
         if (!$this->input->is_ajax_request()) :
             show_404();
         else :
-            $nik    = $this->input->post('nik');
-            $ibu    = $this->input->post('nama_ibu_kandung');
-            $url = "http://localhost:8080/webservices/index.php/api/perantau/users?nik={$nik}&ibu={$ibu}";
-            $result = json_decode(http_request($url), true);
+            if ($this->registrasi_model->check_user() > 0) :
+                $data['success']    = false;
+                $data['message']    = 'Data sudah ada !';
+            else :
+                $nik    = $this->input->post('nik');
+                $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+                $result = json_decode(http_request($url), true);
 
-            if ($result['status'] == true) :
-                echo http_request($url);
+                if ($result != NULL) :
+                    $data['success']    = true;
+                    $data['message']    = 'Data ditemukan';
+                    $data['nama']       = $result['data']['nama_lengkap'];
+                    $data['tgl_lahir']  = $result['data']['tanggal_lahir'];
+                else :
+                    $data['success']    = false;
+                    $data['message']    = 'Data tidak ditemukan !';
+                endif;
             endif;
+
+            echo json_encode($data);
         endif;
     }
 
@@ -46,8 +61,7 @@ class Registrasi extends My_Controller
             show_404();
         else :
             $nik    = $this->input->post('nik');
-            $ibu    = $this->input->post('nama_ibu_kandung');
-            $url = "http://localhost:8080/webservices/index.php/api/perantau/users?nik={$nik}&ibu={$ibu}";
+            $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
 
             $result = json_decode(http_request($url), true);
 
@@ -58,18 +72,26 @@ class Registrasi extends My_Controller
 
                 $data = [
                     'nik'                   => trim($result['data']['nik']),
+                    'kk'                    => trim($result['data']['kk']),
                     'nama_lengkap'          => trim($result['data']['nama_lengkap']),
-                    'jenis_kelamin'         => trim($result['data']['jenis_kelamin']),
                     'tempat_lahir'          => trim($result['data']['tempat_lahir']),
-                    'tgl_lahir'             => trim($result['data']['tgl_lahir']),
-                    'golongan_darah'        => trim($result['data']['golongan_darah']),
+                    'tgl_lahir'             => trim($result['data']['tanggal_lahir']),
+                    'jenis_kelamin'         => trim($result['data']['jenis_kelamin']),
                     'agama'                 => trim($result['data']['agama']),
-                    'status_perkawinan'     => trim($result['data']['status_perkawinan']),
-                    'pendidikan_terakhir'   => trim($result['data']['pendidikan_terakhir']),
+                    'status_perkawinan'     => trim($result['data']['status_kawin']),
+                    'alamat'                => trim($result['data']['alamat']),
+                    'rt'                    => trim($result['data']['rt']),
+                    'rw'                    => trim($result['data']['rw']),
+                    'dusun'                 => trim($result['data']['dusun']),
+                    'no_kel'                => trim($result['data']['no_kel']),
+                    'kelurahan'             => trim($result['data']['kelurahan']),
+                    'no_kec'                => trim($result['data']['no_kec']),
+                    'kecamatan'             => trim($result['data']['kecamatan']),
+                    'no_kab'                => trim($result['data']['no_kab']),
+                    'kabupaten'             => trim($result['data']['kabupaten']),
+                    'no_prop'               => trim($result['data']['no_prop']),
+                    'prop_name'             => trim($result['data']['prop_name']),
                     'jenis_pekerjaan'       => trim($result['data']['jenis_pekerjaan']),
-                    'nama_ibu_kandung'      => trim($result['data']['nama_ibu_kandung']),
-                    'nama_ayah'             => trim($result['data']['nama_ayah']),
-                    'alamat'                => trim($result['data']['alamat_sekarang']),
                 ];
 
                 $check = $this->db->get_where('perantau', [

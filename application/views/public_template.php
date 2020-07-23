@@ -18,11 +18,13 @@
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/admin_lte/css/adminlte.min.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+	<!-- User style -->
+	<link rel="stylesheet" href="<?= base_url(); ?>assets/alfikri/css/style.css">
 	<!-- Extra CSS -->
 	<?= $extra_css; ?>
 </head>
 
-<body class="hold-transition register-page">
+<body style="background-color: white;background-image: url('<?= base_url(); ?>assets/alfikri/img/bg.jpg');background-attachment: fixed;background-size: cover; color:white;" class="hold-transition register-page">
 	<?= $contents; ?>
 	<!-- /.register-box -->
 
