@@ -19,10 +19,13 @@ class Dashboard extends My_Controller
 
   public function index()
   {
-    $data['title']      = 'Dashboard';
-    $page               = 'dashboard/dashboard/index';
-    $data['extra_css']  = $this->load->view('dashboard/dashboard/css', $data, TRUE);
-    $data['extra_js']   = $this->load->view('dashboard/dashboard/js', $data, TRUE);
+    $data['title']          = 'Dashboard';
+
+    $data['total_perantau'] = $this->dashboard_model->get_total_perantau();
+
+    $page                   = 'dashboard/dashboard/index';
+    $data['extra_css']      = $this->load->view('dashboard/dashboard/css', $data, TRUE);
+    $data['extra_js']       = $this->load->view('dashboard/dashboard/js', $data, TRUE);
     $this->template->load('backend_template', $page, $data);
   }
 }

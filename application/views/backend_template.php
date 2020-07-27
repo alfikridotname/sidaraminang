@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/admin_lte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Extra CSS -->
+  <?= $extra_css; ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -67,6 +69,14 @@
   <script src="<?= base_url(); ?>assets/admin_lte/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url(); ?>assets/admin_lte/dist/js/demo.js"></script>
+  <script>
+    function base_url(url) {
+      let base = "<?= base_url(); ?>" + url;
+      return base;
+    }
+  </script>
+  <!-- Extra JS -->
+  <?= $extra_js; ?>
 </body>
 
 </html>

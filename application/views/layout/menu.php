@@ -38,9 +38,9 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?= base_url(); ?>assets/admin_lte/index.html" class="nav-link">
+              <a href="<?= base_url('laporan/'); ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v1</p>
+                <p>Perantau</p>
               </a>
             </li>
           </ul>
