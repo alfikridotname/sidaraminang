@@ -9,10 +9,6 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Messages Dropdown Menu -->
-    <li class="nav-item">
-      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-        <i class="fas fa-th-large"></i>
-      </a>
-    </li>
+    <a href="<?= base_url('auth/logout'); ?>" class="btn btn-primary btn-sm">Logout</a>
   </ul>
 </nav>

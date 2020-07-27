@@ -34,4 +34,10 @@ class Auth extends My_Controller
 
         echo json_encode($this->output);
     }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('/');
+    }
 }

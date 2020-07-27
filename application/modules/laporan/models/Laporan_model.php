@@ -17,7 +17,7 @@ class Laporan_model extends CI_Model
                                   master_wilayah.kode,
                                   master_wilayah.nama 
                                 FROM
-                                  master_wilayah 
+                                  {$this->tbl_wilayah}
                                 WHERE
                                   kode IN (SELECT no_prop FROM perantau)
                                   AND
