@@ -7,7 +7,9 @@ class Dashboard_model extends CI_Model
 
   public function get_total_perantau()
   {
-    $result = $this->db->get($this->tbl_perantau);
+    $result = $this->db->get_where($this->tbl_perantau, [
+      'no_prop !=' => 13
+    ]);
     return $result->num_rows();
   }
 }

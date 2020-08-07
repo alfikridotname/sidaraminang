@@ -16,20 +16,20 @@ class Format_laporan extends FPDF
         $identitas = 'PROVINSI ' . $provinsi;
         $deskripsi = "Tahun " . date('Y');
 
-        $this->pdf->Cell(123);
+        $this->pdf->Cell(150);
         $this->pdf->SetFont('Arial', 'B', 15);
         $this->pdf->Cell(45, 10, 'DATA PERANTAU MINANG SE INDONESIA', 0, 1, 'C');
-        $this->pdf->Cell(123);
+        $this->pdf->Cell(150);
         $this->pdf->SetFont('Arial', 'B', 11);
         $this->pdf->Cell(45, 1, $identitas, 0, 1, 'C');
-        $this->pdf->Cell(123);
+        $this->pdf->Cell(150);
         $this->pdf->SetFont('Arial', 'B', 10);
         $this->pdf->Cell(45, 10, $deskripsi, 0, 1, 'C');
         $this->pdf->SetLineWidth(1);
 
-        $this->pdf->Line(5, 26, 292, 26); //5,26,292,26
+        $this->pdf->Line(5, 26, 350, 26); //5,26,292,26
         $this->pdf->SetLineWidth(0);
-        $this->pdf->Line(5, 27, 292, 27); //5,27,292,27
+        $this->pdf->Line(5, 27, 350, 27); //5,27,292,27
         $this->pdf->Ln(5);
     }
 

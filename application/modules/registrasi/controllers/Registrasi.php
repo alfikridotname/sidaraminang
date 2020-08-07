@@ -79,6 +79,8 @@ class Registrasi extends My_Controller
                     'jenis_kelamin'         => trim($result['data']['jenis_kelamin']),
                     'agama'                 => trim($result['data']['agama']),
                     'status_perkawinan'     => trim($result['data']['status_kawin']),
+                    'no_telpon'             => $this->input->post('no_telp'),
+                    'daerah_asal'           => $this->input->post('daerah_asal'),
                     'alamat'                => trim($result['data']['alamat']),
                     'rt'                    => trim($result['data']['rt']),
                     'rw'                    => trim($result['data']['rw']),

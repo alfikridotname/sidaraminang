@@ -35,7 +35,7 @@ class Laporan extends My_Controller
     global $provinsi;
     $id_provinsi = $this->input->get('id_provinsi');
     $provinsi = $this->laporan_model->get_provinsi($id_provinsi)->row()->nama;
-    $pdf = new Format_laporan('L', 'mm', 'a4');
+    $pdf = new Format_laporan('L', 'mm', 'legal');
     $pdf->SetTopMargin(4);
     $pdf->SetLeftMargin(8);
     $pdf->AddPage();
@@ -49,10 +49,11 @@ class Laporan extends My_Controller
     $pdf->cell(10, 10, 'No', 1, 0, 'C');
     $pdf->cell(40, 10, 'Nama Perantau', 1, 0, 'C');
     $pdf->cell(50, 10, 'Tempat, Tgl Lahir', 1, 0, 'C');
+    $pdf->cell(40, 10, 'Daerah Asal', 1, 0, 'C');
     $pdf->cell(100, 10, 'Alamat', 1, 0, 'C');
     $pdf->cell(20, 10, 'Jenkel', 1, 0, 'C');
     $pdf->cell(50, 10, 'Pekerjaan', 1, 0, 'C');
-    $pdf->cell(10, 10, 'Ket', 1, 1, 'C');
+    $pdf->cell(25, 10, 'No Telpon', 1, 1, 'C');
 
     $no = 1;
     $perantau = $this->laporan_model->get_perantau($id_provinsi)->result();
@@ -63,11 +64,11 @@ class Laporan extends My_Controller
       $pdf->cell(10, 15, $no++, 1, 0, 'C');
       $pdf->cell(40, 15, '  ' . $value->nama_lengkap, 1, 0, 'L');
       $pdf->cell(50, 15, $value->tempat_lahir . ', ' . $value->tgl_lahir, 1, 0, 'C');
-      // $pdf->cell(50, 10, $alamat_lengkap, 1, 0, 'C');
+      $pdf->cell(40, 15, $value->daerah_asal, 1, 0, 'C');
       $pdf->MultiAlignCell(100, 5, $alamat_lengkap, 1, 0, 'L');
       $pdf->cell(20, 15, $value->jenis_kelamin, 1, 0, 'C');
       $pdf->cell(50, 15, $value->jenis_pekerjaan, 1, 0, 'C');
-      $pdf->cell(10, 15, '-', 1, 1, 'C');
+      $pdf->cell(25, 15, $value->no_telpon, 1, 1, 'C');
     }
 
     $pdf->Output('Rekap Laporan Perantau Per Provinsi', 'I');
