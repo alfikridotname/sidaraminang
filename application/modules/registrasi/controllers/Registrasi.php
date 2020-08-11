@@ -30,8 +30,9 @@ class Registrasi extends My_Controller
     public function get_data_user()
     {
         $url    = "http://36.67.167.47/account/application_req/sidara?nik=1304041405900003";
-        $result = json_decode($url);
-        print_r($result);
+        $data       = file_get_contents($url);
+        $konversi   = json_decode($data, true);
+        print_r($konversi);
         die();
         // if (!$this->input->is_ajax_request()) :
         // show_404();
