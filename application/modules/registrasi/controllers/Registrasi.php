@@ -42,6 +42,7 @@ class Registrasi extends My_Controller
             $result = json_decode($url, true);
 
             print_r($result);
+            die();
             // if ($result != NULL) :
             $data['success']    = true;
             $data['message']    = 'Data ditemukan';
