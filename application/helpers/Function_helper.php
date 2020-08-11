@@ -17,5 +17,5 @@ function http_request($url)
     curl_close($ch);
 
     // menampilkan hasil curl
-    echo $output;
+    return $output;
 }

@@ -29,59 +29,30 @@ class Registrasi extends My_Controller
 
     public function get_data_user()
     {
-        $curl = curl_init();
+        if (!$this->input->is_ajax_request()) :
+            show_404();
+        else :
+            if ($this->registrasi_model->check_user() > 0) :
+                $data['success']    = false;
+                $data['message']    = 'Data sudah ada !';
+            else :
+                $nik    = $this->input->post('nik');
+                $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+                $result = json_decode(http_request($url), true);
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://36.67.167.47/account/application_req/sidara?nik=1304041405900003",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "key: cabf779f43f85434f21fbd4ebf8c3695"
-            ),
-        ));
+                if ($result != NULL) :
+                    $data['success']    = true;
+                    $data['message']    = 'Data ditemukan';
+                    $data['nama']       = $result['data']['nama_lengkap'];
+                    $data['tgl_lahir']  = $result['data']['tanggal_lahir'];
+                else :
+                    $data['success']    = false;
+                    $data['message']    = 'Data tidak ditemukan !';
+                endif;
+            endif;
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            echo $response;
-        }
-        // if (!$this->input->is_ajax_request()) :
-        // show_404();
-        // else :
-        // $nik = $this->input->post('nik');
-
-
-        // if ($this->registrasi_model->check_user($nik) > 0) :
-        //     $data['success']    = false;
-        //     $data['message']    = 'Data sudah ada !';
-        // else :
-        //     $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        //     $result = json_decode($url);
-
-        //     print_r($result);
-        //     die();
-        //     // if ($result != NULL) :
-        //     $data['success']    = true;
-        //     $data['message']    = 'Data ditemukan';
-        //     $data['nama']       = $result['data']['nama_lengkap'];
-        //     $data['tgl_lahir']  = $result['data']['tanggal_lahir'];
-        // // else :
-        // //     $data['success']    = false;
-        // //     $data['message']    = 'Data tidak ditemukan !';
-        // // endif;
-        // endif;
-
-        // echo json_encode($data);
-        // endif;
+            echo json_encode($data);
+        endif;
     }
 
     public function register()
