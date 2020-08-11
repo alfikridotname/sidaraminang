@@ -33,13 +33,11 @@ class Registrasi extends My_Controller
             show_404();
         else :
             $nik = $this->input->post('nik');
-            print_r($nik);
-            die();
-            if ($this->registrasi_model->check_user() > 0) :
+
+            if ($this->registrasi_model->check_user($nik) > 0) :
                 $data['success']    = false;
                 $data['message']    = 'Data sudah ada !';
             else :
-                $nik    = $this->input->post('nik');
                 $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
                 $result = json_decode(http_request($url), true);
 
