@@ -29,32 +29,37 @@ class Registrasi extends My_Controller
 
     public function get_data_user()
     {
+        $url    = "http://36.67.167.47/account/application_req/sidara?nik=1304041405900003";
+        $result = json_decode($url);
+        print_r($result);
+        die();
         // if (!$this->input->is_ajax_request()) :
         // show_404();
         // else :
-        $nik = $this->input->post('nik');
+        // $nik = $this->input->post('nik');
 
-        if ($this->registrasi_model->check_user($nik) > 0) :
-            $data['success']    = false;
-            $data['message']    = 'Data sudah ada !';
-        else :
-            $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-            $result = json_decode($url);
 
-            print_r($result);
-            die();
-            // if ($result != NULL) :
-            $data['success']    = true;
-            $data['message']    = 'Data ditemukan';
-            $data['nama']       = $result['data']['nama_lengkap'];
-            $data['tgl_lahir']  = $result['data']['tanggal_lahir'];
-        // else :
+        // if ($this->registrasi_model->check_user($nik) > 0) :
         //     $data['success']    = false;
-        //     $data['message']    = 'Data tidak ditemukan !';
-        // endif;
-        endif;
+        //     $data['message']    = 'Data sudah ada !';
+        // else :
+        //     $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+        //     $result = json_decode($url);
 
-        echo json_encode($data);
+        //     print_r($result);
+        //     die();
+        //     // if ($result != NULL) :
+        //     $data['success']    = true;
+        //     $data['message']    = 'Data ditemukan';
+        //     $data['nama']       = $result['data']['nama_lengkap'];
+        //     $data['tgl_lahir']  = $result['data']['tanggal_lahir'];
+        // // else :
+        // //     $data['success']    = false;
+        // //     $data['message']    = 'Data tidak ditemukan !';
+        // // endif;
+        // endif;
+
+        // echo json_encode($data);
         // endif;
     }
 
