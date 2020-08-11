@@ -39,9 +39,9 @@ class Registrasi extends My_Controller
             $data['message']    = 'Data sudah ada !';
         else :
             $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-            $result = json_decode($url, true);
+            $result = json_decode($url);
 
-            print_r($url);
+            print_r($result);
             die();
             // if ($result != NULL) :
             $data['success']    = true;
