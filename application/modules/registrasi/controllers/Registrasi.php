@@ -29,10 +29,31 @@ class Registrasi extends My_Controller
 
     public function get_data_user()
     {
-        $url    = "http://36.67.167.47/account/application_req/sidara?nik=1304041405900003";
-        $result = http_request($url);
-        print_r($result);
-        die();
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/province{$byid}",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key: cabf779f43f85434f21fbd4ebf8c3695"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
         // if (!$this->input->is_ajax_request()) :
         // show_404();
         // else :
