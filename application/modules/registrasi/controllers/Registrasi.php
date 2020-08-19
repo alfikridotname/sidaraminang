@@ -14,7 +14,7 @@ class Registrasi extends My_Controller
         $this->load->model([
             'registrasi/registrasi_model' => 'registrasi_model'
         ]);
-        // $this->load->library('curl');
+        $this->load->library('curl');
         $this->load->helper('function');
     }
 
@@ -22,7 +22,8 @@ class Registrasi extends My_Controller
     {
         $nik    = "1304041405900003";
         $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        echo http_request($url);
+        $data   = file_get_contents($url);
+        echo $data;
     }
 
     public function index()
