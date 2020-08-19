@@ -18,6 +18,14 @@ class Registrasi extends My_Controller
         $this->load->helper('function');
     }
 
+    public function tes()
+    {
+        $nik    = "1304041405900003";
+        $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+        $data   = file_get_contents($url);
+        echo $data;
+    }
+
     public function index()
     {
         $data['title']      = 'Registrasi Perantau Minang';
