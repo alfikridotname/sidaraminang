@@ -44,11 +44,30 @@ class Registrasi extends My_Controller
         }
     }
 
+    function _is_curl_installed()
+    {
+        if (in_array('curl', get_loaded_extensions())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Ouput text to user based on test
+
+
     public function tes()
     {
-        $nik    = "1304041405900003";
-        $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        echo $this->get_city($url);
+        // $nik    = "1304041405900003";
+        // $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+        // echo $this->get_city($url);
+
+        // Ouput text to user based on test
+        if ($this->_is_curl_installed()) {
+            echo "cURL is <span style=\"color:blue\">installed</span> on this server";
+        } else {
+            echo "cURL is NOT <span style=\"color:red\">installed</span> on this server";
+        }
     }
 
     public function index()
