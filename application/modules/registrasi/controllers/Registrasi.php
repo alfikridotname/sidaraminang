@@ -14,60 +14,15 @@ class Registrasi extends My_Controller
         $this->load->model([
             'registrasi/registrasi_model' => 'registrasi_model'
         ]);
-        $this->load->library('curl');
+        // $this->load->library('curl');
         $this->load->helper('function');
     }
 
-    function get_city($url)
-    {
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            return $response;
-        }
-    }
-
-    function _is_curl_installed()
-    {
-        if (in_array('curl', get_loaded_extensions())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    // Ouput text to user based on test
-
-
     public function tes()
     {
-        // $nik    = "1304041405900003";
-        // $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        // echo $this->get_city($url);
-
-        // Ouput text to user based on test
-        if ($this->_is_curl_installed()) {
-            echo "cURL is <span style=\"color:blue\">installed</span> on this server";
-        } else {
-            echo "cURL is NOT <span style=\"color:red\">installed</span> on this server";
-        }
+        $nik    = "1304041405900003";
+        $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+        echo http_request($url);
     }
 
     public function index()
