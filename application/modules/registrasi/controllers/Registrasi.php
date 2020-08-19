@@ -35,7 +35,7 @@ class Registrasi extends My_Controller
 
         curl_close($ch);
 
-        echo $content;
+        var_dump($content);
     }
 
     public function index()
