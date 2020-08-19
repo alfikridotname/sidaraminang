@@ -48,25 +48,7 @@ class Registrasi extends My_Controller
     {
         $nik    = "1304041405900003";
         $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        // echo $this->get_city($url);
-
-        // $data = array(
-        //     'periode' => $periode
-        // );
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-        $server_output = curl_exec($ch);
-
-        $data_dkb = json_decode($server_output);
-        echo $data_dkb;
+        echo $this->get_city($url);
     }
 
     public function index()
