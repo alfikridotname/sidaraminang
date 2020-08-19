@@ -18,12 +18,8 @@ class Registrasi extends My_Controller
         $this->load->helper('function');
     }
 
-    public function tes()
+    function get_city($url)
     {
-        $nik    = "1304041405900003";
-        $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
-        // $data   = file_get_contents($url);
-        // echo $data;
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -46,6 +42,13 @@ class Registrasi extends My_Controller
         } else {
             return $response;
         }
+    }
+
+    public function tes()
+    {
+        $nik    = "1304041405900003";
+        $url    = "http://36.67.167.47/account/application_req/sidara?nik={$nik}";
+        echo $this->get_city($url);
     }
 
     public function index()
